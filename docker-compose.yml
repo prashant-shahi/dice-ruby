@@ -1,0 +1,14 @@
+version: "2"
+
+services:
+  dice-ruby:
+    image: coolboi567/dice-ruby:0.1
+    ports:
+      - "8080:8080"
+    extra_hosts:
+      - "signoz:host-gateway"
+    environment:
+      - PORT=8080
+      - OTEL_EXPORTER_OTLP_ENDPOINT=signoz:4317   # Replace signoz with endpoint of your signoz instance, if not running on same host
+      - OTEL_RESOURCE_ATTRIBUTES=service.name=dice-ruby
+      - RAILS_ENV=development
